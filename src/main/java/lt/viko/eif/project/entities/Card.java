@@ -1,8 +1,5 @@
 package lt.viko.eif.project.entities;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
 
 /**
  * Card class
@@ -11,8 +8,7 @@ import javax.xml.bind.annotation.XmlType;
  * @author Astijus Jenkus
  * @version 1.0.0
  */
-@XmlRootElement(name = "Card")
-@XmlType(propOrder = {"id", "name"})
+
 public class Card {
 
     private int id;
@@ -35,12 +31,10 @@ public class Card {
         this.name = name;
     }
 
-    @XmlElement(name = "ID")
     public int getId() {
         return id;
     }
 
-    @XmlElement(name = "Name")
     public String getName() {
         return name;
     }
