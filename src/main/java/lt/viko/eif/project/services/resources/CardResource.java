@@ -38,7 +38,8 @@ public class CardResource {
         try {
             if (dao.get(id) != null) {
                 return Response.ok(dao.get(id), MediaType.APPLICATION_JSON).build();
-            } else {
+            }
+            else {
                 return Response.status(Response.Status.NO_CONTENT).build();
             }
         } catch (Exception e) {
@@ -86,13 +87,13 @@ public class CardResource {
     /**
      * PUT Card
      */
-    @Path("/card")
+    @Path("/card/{id}")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response putCard(Card card) {
+    public Response putCard(Card card,@PathParam("id") int id) {
         try {
-            return Response.ok(dao.put(card), MediaType.APPLICATION_JSON).build();
+            return Response.ok(dao.put(card,id), MediaType.APPLICATION_JSON).build();
         } catch (Exception e) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
@@ -101,11 +102,11 @@ public class CardResource {
     /**
      * DELETE Card
      */
-    @Path("/card")
+    @Path("/card/{id}")
     @DELETE
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response deleteCard(@QueryParam("id") int id) {
+    public Response deleteCard(@PathParam("id") int id) {
         try {
             return Response.ok(dao.delete(id), MediaType.APPLICATION_JSON).build();
         } catch (Exception e) {

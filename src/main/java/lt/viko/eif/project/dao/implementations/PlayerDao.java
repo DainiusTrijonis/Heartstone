@@ -75,6 +75,7 @@ public class PlayerDao implements Dao<Player> {
                 pstmt.setInt(1, 0);
                 pstmt.setString(2, player.getName());
                 pstmt.setString(3, player.getPlayer_class());
+
             }
             pstmt.executeUpdate();
 
@@ -87,7 +88,7 @@ public class PlayerDao implements Dao<Player> {
     }
 
     @Override
-    public Boolean put(Player player) {
+    public Boolean put(Player player, int id) {
         String query = "UPDATE player SET name = ? ,player_class = ? where id = ?";
         try {
             PreparedStatement pstmt = myConn.prepareStatement(query);
@@ -95,7 +96,7 @@ public class PlayerDao implements Dao<Player> {
 
                 pstmt.setString(1, player.getName());
                 pstmt.setString(2, player.getPlayer_class());
-                pstmt.setInt(3, player.getId());
+                pstmt.setInt(3, id);
             }
             pstmt.executeUpdate();
 

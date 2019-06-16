@@ -10,7 +10,7 @@ public interface Dao<T> {
 
     Boolean post(T object);
 
-    Boolean put(T object);
+    Boolean put(T object,int id);
 
     Boolean delete(int id);
 }

@@ -116,13 +116,13 @@ public class PlayerResource {
     /**
      * PUT Player
      */
-    @Path("/player")
+    @Path("/player/{id}")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response putPlayer(Player player) {
+    public Response putPlayer(@PathParam("id") int id,Player player) {
         try {
-            return Response.ok(dao.put(player), MediaType.APPLICATION_JSON).build();
+            return Response.ok(dao.put(player,id), MediaType.APPLICATION_JSON).build();
         } catch (Exception e) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
@@ -131,11 +131,11 @@ public class PlayerResource {
     /**
      * DELETE Player
      */
-    @Path("/player")
+    @Path("/player/{id}")
     @DELETE
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response deletePlayer(@QueryParam("id") int id) {
+    public Response deletePlayer(@PathParam("id") int id) {
         try {
             return Response.ok(dao.delete(id), MediaType.APPLICATION_JSON).build();
         } catch (Exception e) {

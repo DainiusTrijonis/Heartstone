@@ -76,8 +76,6 @@ public class CardDao implements Dao<Card> {
     @Override
     public Boolean post(Card card) {
 
-
-
         String query ="insert into card(id,name,type,attack,health,text,player_class) VALUES (?,?,?,?,?,?,?)";
         try
         {
@@ -104,7 +102,7 @@ public class CardDao implements Dao<Card> {
     }
 
     @Override
-    public Boolean put(Card card) {
+    public Boolean put(Card card,int id) {
 
         String query ="UPDATE card SET name = ? , type = ? , attack = ? , health = ? , text = ? , player_class = ? where id = ?";
         try
@@ -118,7 +116,7 @@ public class CardDao implements Dao<Card> {
                 pstmt.setInt(4, card.getHealth());
                 pstmt.setString(5, card.getText());
                 pstmt.setString(6, card.getPlayer_Class());
-                pstmt.setInt(7, card.getId());
+                pstmt.setInt(7, id);
             }
             pstmt.executeUpdate();
 
