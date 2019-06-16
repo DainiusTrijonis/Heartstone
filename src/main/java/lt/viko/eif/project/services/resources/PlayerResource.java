@@ -30,7 +30,7 @@ public class PlayerResource {
     /**
      * GET Player by ID
      */
-    @Path("/{id}")
+    @Path("/player/{id}")
     @GET
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)

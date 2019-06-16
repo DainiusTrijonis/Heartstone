@@ -30,7 +30,7 @@ public class CardResource {
     /**
      * GET Card by ID
      */
-    @Path("/{id}")
+    @Path("/card/{id}")
     @GET
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
