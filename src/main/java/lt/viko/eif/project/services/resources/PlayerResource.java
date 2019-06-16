@@ -1,34 +1,37 @@
 package lt.viko.eif.project.services.resources;
 
 import lt.viko.eif.project.dao.Dao;
-import lt.viko.eif.project.dao.implementations.CardDao;
-import lt.viko.eif.project.entities.Card;
-
+import lt.viko.eif.project.dao.implementations.PlayerDao;
+import lt.viko.eif.project.entities.Player;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-@Path("cards")
-public class CardResource {
+/**
+ *
+ */
+@Path("players")
+public class PlayerResource {
 
-    private Dao dao = new CardDao();
+    private Dao dao = new PlayerDao();
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Card> getAllCards() {
+    public List<Player> getAllCards() {
         try {
             return dao.getAll();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
-}
-    @Path("/card")
+    }
+
+    @Path("/player")
     @GET
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getCard(@QueryParam("k") int k) {
+    public Response getPlayer(@QueryParam("k") int k) {
         try
         {
             if(dao.get(k) != null )
@@ -46,29 +49,29 @@ public class CardResource {
         }
     }
 
-    @Path("/card")
+    @Path("/player")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response insertCard(Card card) {
+    public Response insertPlayer(Player player) {
         try
         {
-            return Response.ok(dao.post(card), MediaType.APPLICATION_JSON).build();
+            return Response.ok(dao.post(player), MediaType.APPLICATION_JSON).build();
         }
         catch (Exception e)
-            {
+        {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
     }
 
-    @Path("/card")
+    @Path("/player")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response putCard(Card card) {
+    public Response putPlayer(Player player) {
         try
         {
-            return Response.ok(dao.put(card), MediaType.APPLICATION_JSON).build();
+            return Response.ok(dao.put(player), MediaType.APPLICATION_JSON).build();
         }
         catch (Exception e)
         {
@@ -76,11 +79,11 @@ public class CardResource {
         }
     }
 
-    @Path("/card")
+    @Path("/player")
     @DELETE
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response deleteCard(@QueryParam("k") int k) {
+    public Response deletePlayer(@QueryParam("k") int k) {
         try
         {
             return Response.ok(dao.delete(k), MediaType.APPLICATION_JSON).build();
@@ -90,6 +93,7 @@ public class CardResource {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
     }
+
 
 
 }

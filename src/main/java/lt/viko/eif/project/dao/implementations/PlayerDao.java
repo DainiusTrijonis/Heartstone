@@ -1,16 +1,17 @@
 package lt.viko.eif.project.dao.implementations;
 
 import lt.viko.eif.project.dao.Dao;
-import lt.viko.eif.project.entities.Card;
+import lt.viko.eif.project.entities.Player;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CardDao implements Dao<Card> {
+public class PlayerDao implements Dao<Player> {
+
 
     private Connection myConn;
 
-    public CardDao() {
+    public PlayerDao() {
         String url = "jdbc:mysql://localhost:3306/database";
         String user = "root";
         String password = "";
@@ -23,24 +24,25 @@ public class CardDao implements Dao<Card> {
     }
 
     @Override
-    public List<Card> getAll(){
-        List<Card> cards = new ArrayList<>();
+    public List<Player> getAll()
+    {
+        List<Player> players = new ArrayList<>();
         Statement myStmt = null;
         ResultSet result = null;
 
         try
         {
             myStmt = myConn.createStatement();
-            String query ="select * from card";
+            String query ="select * from player";
             result = myStmt.executeQuery(query);
 
             while (result.next())
             {
-                Card card = new Card(result.getInt("id"), result.getString("name"), result.getString("type"), result.getInt("attack"),result.getInt("health"),result.getString("text"), result.getString("player_class"));
-                cards.add(card);
+                Player player = new Player(result.getInt("id"), result.getString("name"),result.getString("player_class"));
+                players.add(player);
             }
 
-            return cards;
+            return players;
         }
         catch(Exception e)
         {
@@ -48,22 +50,19 @@ public class CardDao implements Dao<Card> {
             System.out.print(e);
             return null;
         }
-
     }
-
     @Override
-    public Card get(int id){
-
+    public Player get(int id)
+    {
         ResultSet result = null;
-        String query ="select * from card where id = "+id;
+        String query ="select * from player where id = "+id;
         try
         {
             PreparedStatement pstmt = myConn.prepareStatement(query);
-
             result = pstmt.executeQuery(query);
             result.next();
-            Card card = new Card(result.getInt("id"), result.getString("name"), result.getString("type"), result.getInt("attack"),result.getInt("health"),result.getString("text"), result.getString("player_class"));
-            return card;
+            Player player = new Player(result.getInt("id"), result.getString("name"),result.getString("player_class"));
+            return player;
 
         }
         catch(Exception e)
@@ -74,22 +73,16 @@ public class CardDao implements Dao<Card> {
 
     }
     @Override
-    public Boolean post(Card card) {
-
-
-
-        String query ="insert into card(id,name,type,attack,health,text,player_class) VALUES (?,?,?,?,?,?,?)";
+    public Boolean post(Player player)
+    {
+        String query ="insert into player(id,name,player_class) VALUES (?,?,?)";
         try
         {
             PreparedStatement pstmt = myConn.prepareStatement(query);
             {
                 pstmt.setInt(1, 0);
-                pstmt.setString(2, card.getName());
-                pstmt.setString(3, card.getType());
-                pstmt.setInt(4, card.getAttack());
-                pstmt.setInt(5, card.getHealth());
-                pstmt.setString(6, card.getText());
-                pstmt.setString(7, card.getPlayer_Class());
+                pstmt.setString(2, player.getName());
+                pstmt.setString(3, player.getPlayer_class());
             }
             pstmt.executeUpdate();
 
@@ -102,23 +95,18 @@ public class CardDao implements Dao<Card> {
             return false;
         }
     }
-
     @Override
-    public Boolean put(Card card) {
-
-        String query ="UPDATE card SET name = ? , type = ? , attack = ? , health = ? , text = ? , player_class = ? where id = ?";
+    public Boolean put(Player player)
+    {
+        String query ="UPDATE player SET name = ? ,player_class = ? where id = ?";
         try
         {
             PreparedStatement pstmt = myConn.prepareStatement(query);
             {
 
-                pstmt.setString(1, card.getName());
-                pstmt.setString(2, card.getType());
-                pstmt.setInt(3, card.getAttack());
-                pstmt.setInt(4, card.getHealth());
-                pstmt.setString(5, card.getText());
-                pstmt.setString(6, card.getPlayer_Class());
-                pstmt.setInt(7, card.getId());
+                pstmt.setString(1, player.getName());
+                pstmt.setString(2, player.getPlayer_class());
+                pstmt.setInt(3, player.getId());
             }
             pstmt.executeUpdate();
 
@@ -131,11 +119,10 @@ public class CardDao implements Dao<Card> {
             return false;
         }
     }
-
     @Override
-    public Boolean delete(int id) {
-
-        String query ="DELETE FROM card where id = ?";
+    public Boolean delete(int id)
+    {
+        String query ="DELETE FROM player where id = ?";
         try
         {
             PreparedStatement pstmt = myConn.prepareStatement(query);
