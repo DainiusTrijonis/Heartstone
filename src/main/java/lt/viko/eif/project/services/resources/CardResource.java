@@ -105,9 +105,9 @@ public class CardResource {
     @DELETE
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response deleteCard(@QueryParam("k") int k) {
+    public Response deleteCard(@QueryParam("id") int id) {
         try {
-            return Response.ok(dao.delete(k), MediaType.APPLICATION_JSON).build();
+            return Response.ok(dao.delete(id), MediaType.APPLICATION_JSON).build();
         } catch (Exception e) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }

@@ -135,9 +135,9 @@ public class PlayerResource {
     @DELETE
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response deletePlayer(@QueryParam("k") int k) {
+    public Response deletePlayer(@QueryParam("id") int id) {
         try {
-            return Response.ok(dao.delete(k), MediaType.APPLICATION_JSON).build();
+            return Response.ok(dao.delete(id), MediaType.APPLICATION_JSON).build();
         } catch (Exception e) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
