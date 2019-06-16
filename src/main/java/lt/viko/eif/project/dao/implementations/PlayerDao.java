@@ -180,7 +180,7 @@ public class PlayerDao implements Dao<Player> {
 
         } catch (Exception e) {
             System.out.print(e);
-            return null;
+            return false;
         }
 
         String query = "INSERT INTO deck (deck.player_id, deck.name) VALUES (?, ?)";

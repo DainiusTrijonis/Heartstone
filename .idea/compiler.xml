@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Heartstone" />
+        <module name="version 2" />
         <module name="project" />
         <module name="heartstone" />
       </profile>
