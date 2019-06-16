@@ -1,6 +1,6 @@
 package lt.viko.eif.project.dao;
 
-        import java.util.List;
+import java.util.List;
 
 public interface Dao<T> {
 
@@ -13,7 +13,4 @@ public interface Dao<T> {
     Boolean put(T object);
 
     Boolean delete(int id);
-
-
-
 }

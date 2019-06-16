@@ -6,9 +6,9 @@ public class Player {
     String player_class;
 
 
-
     public Player() {
     }
+
     public Player(int id, String name, String player_class) {
         this.id = id;
         this.name = name;

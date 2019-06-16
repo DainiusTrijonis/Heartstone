@@ -27,12 +27,13 @@ public class Card {
 
     /**
      * Constructor with all variables Card Object
-     * @param id id
-     * @param name name
-     * @param type type
-     * @param attack attack
-     * @param health health
-     * @param text text
+     *
+     * @param id           id
+     * @param name         name
+     * @param type         type
+     * @param attack       attack
+     * @param health       health
+     * @param text         text
      * @param player_Class player_Class
      */
     public Card(int id, String name, String type, int attack, int health, String text, String player_Class) {
