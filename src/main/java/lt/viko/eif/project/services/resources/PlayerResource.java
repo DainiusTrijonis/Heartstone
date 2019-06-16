@@ -53,7 +53,7 @@ public class PlayerResource {
     @GET
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getPlayerByName(@QueryParam("name") String name) {
+    public Response getPlayerByName(@PathParam("name") String name) {
         return Response.ok(dao.getByName(name), MediaType.APPLICATION_JSON).build();
     }
 
@@ -64,7 +64,7 @@ public class PlayerResource {
     @GET
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getPlyerById(@PathParam("class") String player_class) {
+    public Response getPlayerByClass(@PathParam("class") String player_class) {
         return Response.ok(dao.getByClass(player_class), MediaType.APPLICATION_JSON).build();
     }
 
